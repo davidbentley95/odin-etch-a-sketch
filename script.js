@@ -12,3 +12,5 @@ function setBoardSize(event) {
 }
 
 document.querySelector("#board-size-buttons").addEventListener("click", setBoardSize);
+
+document.querySelector("#drawing-board").addEventListener("mouseover", (e) => e.target.style.backgroundColor = "black");
