@@ -8,16 +8,13 @@
 </head>
 <body>
     <header></header>
-    <div id="left-side-div"></div>
-    <div id="board-size-buttons">
-        <button class="num-of-squares" value="16">16x16</button>
-        <button class="num-of-square" value="20">20x20</button>
-        <button class="num-of-squares" value="24">24x24</button>
-    </div>
-    <div id="right-side-div">
-        <div id="drawing-board">
+    <div id="left-side-div">
 
-        </div>
+    </div>
+
+    <div id="right-side-div">
+        <input type="range" id="board-size-selector" min="4" max="25">
+        <div id="drawing-board"></div>
     </div>
     <footer></footer>
 <script src="script.js"></script>
