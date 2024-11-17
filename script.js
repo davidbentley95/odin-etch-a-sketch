@@ -3,10 +3,14 @@ const drawingBoard = document.querySelector("#drawing-board");
 function setBoardSize(event) {
     let numOfSquares = event.target.value;
     drawingBoard.innerHTML = "";
+    drawingBoard.style.display = "grid";
     drawingBoard.style.gridTemplateColumns = `repeat(${numOfSquares}, 1fr)`;
     drawingBoard.style.gridTemplateRows = `repeat(${numOfSquares}, 1fr)`;
+
     for(let i=1; i<=numOfSquares*numOfSquares; i++) {
-        drawingBoard.innerHTML += `<div class="pixel"></div>`;  
+        const pixel = document.createElement("div");
+        pixel.classList.add("pixel");
+        drawingBoard.appendChild(pixel);
     }
 }
 
