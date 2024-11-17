@@ -1,6 +1,10 @@
 const drawingBoard = document.querySelector("#drawing-board");
 const rangeBar = document.querySelector("#board-size-selector");
+
 let numOfSquares = rangeBar.value;
+let lastExecution = 0;
+let lastPosition = {x: -1, y: -1};
+
 
 // Set default board on load
 
@@ -22,12 +26,21 @@ function setBoardSize(event) {
         pixel.classList.add("pixel");
         drawingBoard.appendChild(pixel);
     }
-}
+};
+
+// event handle function for darkening squares
+function darkenSquare(event) {
+
+    let x = event.clientX;
+    console.log(x);
+    let y = event.clientY;
+    console.log(y);
+
+    let currentOpacity = Number(window.getComputedStyle(event.target).getPropertyValue("opacity"));
+    event.target.style.opacity = currentOpacity + 0.1;
+};
 
 document.querySelector("#board-size-selector").addEventListener("input", setBoardSize);
 
-document.querySelector("#drawing-board").addEventListener("mouseover", (e) => {
-    let currentOpacity = Number(window.getComputedStyle(e.target).getPropertyValue("opacity"));
-    e.target.style.opacity = currentOpacity + 0.1;
-});
+document.querySelector("#drawing-board").addEventListener("mousemove", darkenSquare);
 
