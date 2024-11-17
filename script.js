@@ -1,9 +1,19 @@
 const drawingBoard = document.querySelector("#drawing-board");
+const rangeBar = document.querySelector("#board-size-selector");
+let numOfSquares = rangeBar.value;
 
+// Set default board on load
+
+for(let i=1; i<=numOfSquares*numOfSquares; i++) {
+    const pixel = document.createElement("div");
+    pixel.classList.add("pixel");
+    drawingBoard.appendChild(pixel);
+}
+
+// event handle function for changing slider
 function setBoardSize(event) {
-    let numOfSquares = event.target.value;
+    numOfSquares = event.target.value;
     drawingBoard.innerHTML = "";
-    drawingBoard.style.display = "grid";
     drawingBoard.style.gridTemplateColumns = `repeat(${numOfSquares}, 1fr)`;
     drawingBoard.style.gridTemplateRows = `repeat(${numOfSquares}, 1fr)`;
 
