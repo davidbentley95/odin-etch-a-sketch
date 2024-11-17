@@ -16,4 +16,8 @@ function setBoardSize(event) {
 
 document.querySelector("#board-size-selector").addEventListener("input", setBoardSize);
 
-document.querySelector("#drawing-board").addEventListener("mouseover", (e) => e.target.style.backgroundColor = "black");
+document.querySelector("#drawing-board").addEventListener("mouseover", (e) => {
+    let currentOpacity = Number(window.getComputedStyle(e.target).getPropertyValue("opacity"));
+    e.target.style.opacity = currentOpacity + 0.1;
+});
+
