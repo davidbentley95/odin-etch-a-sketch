@@ -3,6 +3,7 @@
     height: 500px;
     display: grid;
     border: 5px solid black;
+    background-color: white !important;
     grid-template-columns: repeat(50, 1fr);
     grid-template-rows: repeat(50, 1fr); 
 }
@@ -11,3 +12,4 @@
     background-color: black;
     opacity: 0;
 }
+
