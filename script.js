@@ -5,15 +5,19 @@ const rangeBar = document.querySelector("#board-size-selector");
 let numOfSquares = rangeBar.value;
 let pixelColor = "black";
 let randomColorFlag = false;
+let pixelNumber = 1;
 
 // Set default board on load
-
 for(let i=1; i<=numOfSquares*numOfSquares; i++) {
     const pixel = document.createElement("div");
     pixel.classList.add("pixel");
+    pixel.setAttribute("name", pixelNumber);
     drawingBoard.appendChild(pixel);
+    pixelNumber++;
 }
+roundCornerPixels();
 
+// game functions
 function randomColorPicker() {
     let randomIndex = Math.floor(Math.random() * (RGB_COLOR_PALETTE.length -1));
     pixelColor = RGB_COLOR_PALETTE[randomIndex];
@@ -23,18 +27,31 @@ function setPixelColor(pixel) {
     pixel.style.backgroundColor = pixelColor;
 }
 
+function roundCornerPixels() {
+    const pixels = document.querySelectorAll(".pixel");
+    const boardSize = numOfSquares*numOfSquares;
+
+    pixels[0].style.borderRadius = "20px 0 0 0";
+    pixels[numOfSquares-1].style.borderRadius = "0 20px 0 0";
+    pixels[(boardSize)-numOfSquares].style.borderRadius = "0 0 0 20px";
+    pixels[boardSize-1].style.borderRadius = "0 0 20px 0";
+}
+
 // event handle function for changing slider
 function setBoardSize(event) {
     numOfSquares = event.target.value;
     drawingBoard.innerHTML = "";
     drawingBoard.style.gridTemplateColumns = `repeat(${numOfSquares}, .5fr)`;
     drawingBoard.style.gridTemplateRows = `repeat(${numOfSquares}, .5fr)`;
-
+    pixelNumber = 1;
     for(let i=1; i<=numOfSquares*numOfSquares; i++) {
         const pixel = document.createElement("div");
         pixel.classList.add("pixel");
+        pixel.setAttribute("name", pixelNumber);
         drawingBoard.appendChild(pixel);
+        pixelNumber++;
     }
+    roundCornerPixels();
 };
 
 // event handle function for darkening squares
