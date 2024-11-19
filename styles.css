@@ -1,9 +1,20 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    min-height: 100vh;
+    background-color: #FF0000;
+}
+
 #drawing-board {
-    width: 500px;
-    height: 500px;
+    height: 80vh;
+    margin-left: 5%;
+    margin-right: 5%;
     display: grid;
-    border: 5px solid black;
-    background-color: white !important;
+    border-radius: 20px;
+    background-color: #D0D2D1 !important;
     grid-template-columns: repeat(50, 1fr);
     grid-template-rows: repeat(50, 1fr); 
 }
@@ -11,5 +22,79 @@
 .pixel {
     background-color: black;
     opacity: 0;
+}
+
+header, footer {
+    background-color: #FF0000;
+    width: 100vw;
+    height: 10vh;
+    color: #C88D40;
+    display: flex;
+}
+
+header {
+    justify-content: center;
+    align-items: center;
+    flex-wrap: nowrap;
+}
+
+footer {
+    justify-content: space-between;
+}
+
+.game-name {
+    font-family: "Corinthia", cursive;
+    font-weight: 700;
+    font-style: normal;
+    font-size: 2.5em;
+    margin-left: 100px;
+    margin-right: 100px;
+
+}
+
+button {
+    height: 90px;
+    width: 90px;
+    border-radius: 50%;
+    border: none;
+}
+
+.black-button:hover {
+    background-color: black;
+    color: white;
+}
+
+.rgb-button:hover {
+    background-image: linear-gradient(90deg,orange,yellow,green,blue,indigo,violet);
+    color: white;
+}
+
+button:active {
+    transform: scale(0.98);
+    box-shadow: 3px 2px 22px 1px rgba(0, 0, 0, 0.24);
+}
+
+.red {
+    color: red;
+}
+
+.blue {
+    color: blue;
+}
+
+.green {
+    color: green;
+}
+
+@media screen and (max-width: 1000px){
+    .game-name {
+        font-size: 7vw;
+        margin-left: 20px;
+        margin-right: 20px;
+    }
+
+    h1 {
+        font-size: 3vw;
+    }
 }
 

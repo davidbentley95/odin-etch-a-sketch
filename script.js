@@ -1,4 +1,4 @@
-const EARTHY_COLOR_PALETTE = ["#223030", "#523D35", "#959D90", "#BBA58F", "#E8D9CD", "#EFEFE9"];
+const RGB_COLOR_PALETTE = ["#d10000", "#ff6622", "#ffda21", "#33dd00", "#1133cc", "#220066","#330044"];
 const drawingBoard = document.querySelector("#drawing-board");
 const rangeBar = document.querySelector("#board-size-selector");
 
@@ -15,8 +15,8 @@ for(let i=1; i<=numOfSquares*numOfSquares; i++) {
 }
 
 function randomColorPicker() {
-    let randomIndex = Math.floor(Math.random() * (EARTHY_COLOR_PALETTE.length -1));
-    pixelColor = EARTHY_COLOR_PALETTE[randomIndex];
+    let randomIndex = Math.floor(Math.random() * (RGB_COLOR_PALETTE.length -1));
+    pixelColor = RGB_COLOR_PALETTE[randomIndex];
 }
 
 function setPixelColor(pixel) {
@@ -27,8 +27,8 @@ function setPixelColor(pixel) {
 function setBoardSize(event) {
     numOfSquares = event.target.value;
     drawingBoard.innerHTML = "";
-    drawingBoard.style.gridTemplateColumns = `repeat(${numOfSquares}, 1fr)`;
-    drawingBoard.style.gridTemplateRows = `repeat(${numOfSquares}, 1fr)`;
+    drawingBoard.style.gridTemplateColumns = `repeat(${numOfSquares}, .5fr)`;
+    drawingBoard.style.gridTemplateRows = `repeat(${numOfSquares}, .5fr)`;
 
     for(let i=1; i<=numOfSquares*numOfSquares; i++) {
         const pixel = document.createElement("div");
@@ -53,5 +53,5 @@ function darkenSquare(event) {
 document.querySelector("#board-size-selector").addEventListener("input", setBoardSize);
 document.querySelector("#drawing-board").addEventListener("mouseover", darkenSquare);
 document.querySelector(".black-button").addEventListener("click", () => randomColorFlag = false);
-document.querySelector(".earthy-button").addEventListener("click", () => randomColorFlag = true);
+document.querySelector(".rgb-button").addEventListener("click", () => randomColorFlag = true);
 
