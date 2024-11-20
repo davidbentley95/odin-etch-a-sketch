@@ -100,22 +100,37 @@ document.querySelector("#drawing-board").addEventListener("touchmove", trackTouc
 document.querySelector("#drawing-board").addEventListener("touchstart", trackTouchMovement);
 
 
-function isWithinDiv(x, y, rect) {
-    return x >= rect.left && x <= rect.right && y >= rect.top && y <= rect.bottom;
-};
+// function isWithinDiv(x, y, rect) {
+//     return x >= rect.left && x <= rect.right && y >= rect.top && y <= rect.bottom;
+// };
 
 function trackTouchMovement(event) {
     
     const touchX = event.touches[0].clientX;
-    console.log(touchX);
     const touchY = event.touches[0].clientY;
-    console.log(touchY);
-    currentDiv = event.target;
-    console.log(currentDiv);
 
-    console.log((isWithinDiv(touchX, touchY, currentDiv.getBoundingClientRect())));
-    if(isWithinDiv(touchX, touchY, currentDiv.getBoundingClientRect())) {
-        currentDiv.style.backgroundColor = "yellow"
+    // Get the element currently under the touch point
+    const newDiv = document.elementFromPoint(touchX, touchY);
+
+    // Check if the newDiv is different from the currentDiv
+    if (newDiv !== currentDiv && newDiv.tagName === "DIV") {
+        // Reset the previous currentDiv
+        if (currentDiv) {
+            currentDiv.style.backgroundColor = ""; // Reset background
+            currentDiv.style.opacity = ""; // Reset opacity
+        }
+
+        // Update the currentDiv
+        currentDiv = newDiv;
+
+        // Apply new styles to the currentDiv
+        currentDiv.style.backgroundColor = "yellow";
+        currentDiv.style.opacity = 1;
     }
+
+    // Optional: Log for debugging
+    console.log(`Touch position: (${touchX}, ${touchY})`);
+    console.log(`Current Div:`, currentDiv);
+
 };
 
