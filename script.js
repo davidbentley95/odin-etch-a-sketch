@@ -75,14 +75,17 @@ function darkenSquare(event) {
         event.target.style.opacity = currentOpacity + 0.1;}
 };
 
-//event handler function for touch movement
-function handleTouch(event) {
-    const touch = event.touches[0];
-    const x = touch.clientX;
-    const y = touch.clientY;
-    const touchedElement = document.elementFromPoint(x,y);
 
-};
+
+
+//event handler function for touch movement
+// function handleTouch(event) {
+//     const touch = event.touches[0];
+//     const x = touch.clientX;
+//     const y = touch.clientY;
+//     const touchedElement = document.elementFromPoint(x,y);
+
+// };
 
 //Event Listeners
 document.querySelector("#board-size-selector").addEventListener("input", setBoardSize);
@@ -115,17 +118,16 @@ function trackTouchMovement(event) {
     // Check if the newDiv is different from the currentDiv
     if (newDiv !== currentDiv && newDiv.tagName === "DIV") {
         // Reset the previous currentDiv
-        if (currentDiv) {
-            currentDiv.style.backgroundColor = ""; // Reset background
-            currentDiv.style.opacity = ""; // Reset opacity
-        }
+        // if (currentDiv) {
+        //     currentDiv.style.backgroundColor = ""; // Reset background
+        //     currentDiv.style.opacity = ""; // Reset opacity
+        // }
 
         // Update the currentDiv
         currentDiv = newDiv;
-
+        let currentOpacity = Number(window.getComputedStyle(currentDiv).getPropertyValue("opacity"));
         // Apply new styles to the currentDiv
-        currentDiv.style.backgroundColor = "yellow";
-        currentDiv.style.opacity = 1;
+        currentDiv.style.opacity = currentOpacity + 0.1;
     }
 
     // Optional: Log for debugging
