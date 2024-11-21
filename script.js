@@ -38,14 +38,6 @@ function roundCornerPixels() {
     pixels[boardSize-1].style.borderRadius = "0 0 20px 0";
 }
 
-// function setPixelCoordinates() {
-//     const pixels = document.querySelectorAll(".pixel");
-//     pixels.forEach((cell) => {
-//         const rect = cell.getBoundingClientRect();
-//         console.log(`x=${rect.x}, y=${rect.y}`);
-//     })
-// }
-
 // event handler function for changing slider
 function setBoardSize(event) {
     numOfSquares = event.target.value;
@@ -75,38 +67,7 @@ function darkenSquare(event) {
         event.target.style.opacity = currentOpacity + 0.1;}
 };
 
-
-
-
-//event handler function for touch movement
-// function handleTouch(event) {
-//     const touch = event.touches[0];
-//     const x = touch.clientX;
-//     const y = touch.clientY;
-//     const touchedElement = document.elementFromPoint(x,y);
-
-// };
-
-//Event Listeners
-document.querySelector("#board-size-selector").addEventListener("input", setBoardSize);
-document.querySelector("#drawing-board").addEventListener("mouseover", darkenSquare);
-document.querySelector(".black-button").addEventListener("click", () => randomColorFlag = false);
-document.querySelector(".rgb-button").addEventListener("click", () => randomColorFlag = true);
-
-// document.querySelector("#drawing-board").addEventListener("touchmove", e => {console.log(e.touches);
-//     console.log(e.target.getBoundingClientRect());
-//     console.log(`X: ${e.touches[0].clientX}`);
-//     console.log(`Y: ${e.touches[0].clientY}`);
-// });
-
-document.querySelector("#drawing-board").addEventListener("touchmove", trackTouchMovement);
-document.querySelector("#drawing-board").addEventListener("touchstart", trackTouchMovement);
-
-
-// function isWithinDiv(x, y, rect) {
-//     return x >= rect.left && x <= rect.right && y >= rect.top && y <= rect.bottom;
-// };
-
+// event handler function to for mobile
 function trackTouchMovement(event) {
     
     const touchX = event.touches[0].clientX;
@@ -117,22 +78,26 @@ function trackTouchMovement(event) {
 
     // Check if the newDiv is different from the currentDiv
     if (newDiv !== currentDiv && newDiv.tagName === "DIV") {
-        // Reset the previous currentDiv
-        // if (currentDiv) {
-        //     currentDiv.style.backgroundColor = ""; // Reset background
-        //     currentDiv.style.opacity = ""; // Reset opacity
-        // }
-
-        // Update the currentDiv
+        // Update the currentDiv and get opacity and color
         currentDiv = newDiv;
-        let currentOpacity = Number(window.getComputedStyle(currentDiv).getPropertyValue("opacity"));
+        let currentOpacity = Number(window.getComputedStyle(currentDiv).
+        getPropertyValue("opacity"));
+        if(randomColorFlag && currentOpacity === 0) {
+            randomColorPicker();
+            setPixelColor(currentDiv);
+        }
         // Apply new styles to the currentDiv
         currentDiv.style.opacity = currentOpacity + 0.1;
     }
-
-    // Optional: Log for debugging
-    console.log(`Touch position: (${touchX}, ${touchY})`);
-    console.log(`Current Div:`, currentDiv);
-
 };
+
+//Event Listeners
+document.querySelector("#board-size-selector").addEventListener("input", setBoardSize);
+document.querySelector("#drawing-board").addEventListener("mouseover", darkenSquare);
+document.querySelector(".black-button").addEventListener("click", () => randomColorFlag = false);
+document.querySelector(".rgb-button").addEventListener("click", () => randomColorFlag = true);
+document.querySelector("#drawing-board").addEventListener("touchmove", trackTouchMovement);
+document.querySelector("#drawing-board").addEventListener("touchstart", trackTouchMovement);
+
+
 
