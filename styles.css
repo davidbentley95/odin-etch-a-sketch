@@ -128,7 +128,7 @@ button:active {
     h1 {
         font-size: 3vw;
     }
-    button {
+    .black-button,.rgb-button {
         height: 70px;
         width: 70px;
         border-radius: 50%;
