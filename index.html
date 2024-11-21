@@ -14,8 +14,11 @@
     <div id="drawing-board"></div>
     <footer>
         <button class="black-button" autofocus style="outline: none;">Black</button>
-        <input type="range" id="board-size-selector" min="4" max="100" value="50">
-        <button class="rgb-button"><span class="red">R</span><span class="green">G</span><span class="blue">B</span> Palette</button>
+        <div class="center-controls">
+            <input type="range" id="board-size-selector" min="4" max="100" value="50">
+            <button class="reset" onclick="resetBoard()">Reset</button>
+        </div>
+        <button class="rgb-button" style="outline: none;"><span class="red">R</span><span class="green">G</span><span class="blue">B</span> Palette</button>
     </footer>
 <script src="script.js"></script>
 </body>

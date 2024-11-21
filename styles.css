@@ -52,7 +52,7 @@ footer {
 
 }
 
-button {
+.black-button, .rgb-button {
     height: 90px;
     width: 90px;
     border-radius: 50%;
@@ -104,6 +104,18 @@ button:active {
 
 .green {
     color: green;
+}
+
+.center-controls {
+    display: flex;
+    flex-direction: column;
+    align-self: center;
+    gap: 20px
+}
+
+.reset {
+    padding: 5px;
+    border-radius: 10px;
 }
 
 @media screen and (max-width: 1000px){

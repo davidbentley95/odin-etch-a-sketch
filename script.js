@@ -7,6 +7,7 @@ let pixelColor = "black";
 let randomColorFlag = false;
 let pixelNumber = 1;
 let currentDiv = null;
+let focusedButton = document.querySelector(".black-button");
 
 // Set default board on load
 for(let i=1; i<=numOfSquares*numOfSquares; i++) {
@@ -38,6 +39,12 @@ function roundCornerPixels() {
     pixels[boardSize-1].style.borderRadius = "0 0 20px 0";
 }
 
+function resetBoard() {
+    document.querySelectorAll(".pixel").forEach((pixel) => {
+        pixel.style.opacity = 0;
+    });
+}
+
 // event handler function for changing slider
 function setBoardSize(event) {
     numOfSquares = event.target.value;
@@ -63,6 +70,9 @@ function darkenSquare(event) {
         if(randomColorFlag && currentOpacity === 0) {
             randomColorPicker();
             setPixelColor(event.target);
+        }
+        if(!randomColorFlag && currentOpacity === 0) {
+            event.target.style.backgroundColor = "black";
         }
         event.target.style.opacity = currentOpacity + 0.1;}
 };
@@ -94,12 +104,30 @@ function trackTouchMovement(event) {
 };
 
 //Event Listeners
-document.querySelector("#board-size-selector").addEventListener("input", setBoardSize);
+document.querySelector("#board-size-selector").addEventListener("input", (event) => 
+    {
+        setBoardSize(event);
+        event.preventDefault();
+        focusedButton.focus();
+    });
 document.querySelector("#drawing-board").addEventListener("mouseover", darkenSquare);
-document.querySelector(".black-button").addEventListener("click", () => randomColorFlag = false);
+document.querySelector(".black-button").addEventListener("click", () => randomColorFlag = false)
 document.querySelector(".rgb-button").addEventListener("click", () => randomColorFlag = true);
 document.querySelector("#drawing-board").addEventListener("touchmove", trackTouchMovement);
 document.querySelector("#drawing-board").addEventListener("touchstart", trackTouchMovement);
+document.querySelector(".black-button").addEventListener("mousedown", () => {
+    focusedButton = document.querySelector(".black-button");
+    focusedButton.focus()
+});
+document.querySelector(".reset").addEventListener("mousedown", (event) => {
+    event.preventDefault();
+    focusedButton.focus();
+});
+
+document.querySelector(".rgb-button").addEventListener("mousedown", () => {
+    focusedButton = document.querySelector(".rgb-button"); 
+    focusedButton.focus();
+});
 
 
 
