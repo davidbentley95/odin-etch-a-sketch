@@ -74,6 +74,16 @@ button:active {
     box-shadow: 3px 2px 22px 1px rgba(0, 0, 0, 0.24);
 }
 
+.black-button {
+    margin-left: 20px;
+    margin-top: 10px;
+}
+
+.rgb-button {
+    margin-right: 20px;
+    margin-top: 10px;
+}
+
 .red {
     color: red;
 }
@@ -95,6 +105,11 @@ button:active {
 
     h1 {
         font-size: 3vw;
+    }
+    button {
+        height: 70px;
+        width: 70px;
+        border-radius: 50%;
     }
 }
 

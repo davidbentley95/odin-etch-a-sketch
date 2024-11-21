@@ -70,6 +70,8 @@ function darkenSquare(event) {
 // event handler function to for mobile
 function trackTouchMovement(event) {
     
+    event.preventDefault();
+
     const touchX = event.touches[0].clientX;
     const touchY = event.touches[0].clientY;
 
