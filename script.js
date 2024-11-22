@@ -97,8 +97,9 @@ function trackTouchMovement(event) {
         if(randomColorFlag && currentOpacity === 0) {
             randomColorPicker();
             setPixelColor(currentDiv);
+        }if(!randomColorFlag && currentOpacity === 0) {
+            currentDiv.style.backgroundColor = "black";
         }
-        // Apply new styles to the currentDiv
         currentDiv.style.opacity = currentOpacity + 0.1;
     }
 };
